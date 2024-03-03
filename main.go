@@ -6,11 +6,24 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/mateuszjurus/prometheus/db"
+	"github.com/mateuszjurus/prometheus/internal/config"
 	"github.com/mateuszjurus/prometheus/internal/handlers"
 	"github.com/rs/cors"
 )
 
 func main() {
+	dbUser := config.DBUser
+	dbPass := config.DBPassword
+	dbName := config.DBName
+	dbHost := config.DBHost
+	dbPort := config.DBPort
+
+	connectDB(dbUser, dbPass, dbName, dbHost, dbPort)
+	initRouting()
+}
+
+func initRouting() {
 	// Create a new router
 	router := mux.NewRouter()
 
@@ -36,4 +49,8 @@ func main() {
 	if err != nil {
 		log.Fatal("Error starting the server:", err)
 	}
+}
+
+func connectDB(dbuser, dbpass, dbname, dbhost string, dbport int) {
+	db.InitDB(dbuser, dbpass, dbname, dbhost, dbport)
 }
