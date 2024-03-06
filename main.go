@@ -13,13 +13,7 @@ import (
 )
 
 func main() {
-	dbUser := config.DBUser
-	dbPass := config.DBPassword
-	dbName := config.DBName
-	dbHost := config.DBHost
-	dbPort := config.DBPort
-
-	connectDB(dbUser, dbPass, dbName, dbHost, dbPort)
+	connectDB(config.DBUser, config.DBPassword, config.DBName, config.DBHost, config.DBPort)
 	initRouting()
 }
 
@@ -30,6 +24,7 @@ func initRouting() {
 	// Define the route for the homepage
 	router.HandleFunc("/", handlers.HomeHandler).Methods("GET")
 	router.HandleFunc("/name", handlers.NameHandler).Methods("POST")
+	router.HandleFunc("/create-user", handlers.CreateUserHandler).Methods("POST")
 
 	// Use CORS middleware
 	corsHandler := cors.Default().Handler(router)
