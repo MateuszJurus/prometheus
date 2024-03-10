@@ -13,14 +13,21 @@ import (
 )
 
 func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
+	db.SetupValidator()
 	var newUser db.User
 	err := json.NewDecoder(r.Body).Decode(&newUser)
-
-	fmt.Println("user: ", newUser)
 
 	if err != nil {
 		log.Fatal(err)
 		http.Error(w, "Invalid request body", http.StatusBadRequest)
+		return
+	}
+
+	errs := db.ValidateUser(newUser)
+	if len(errs) > 0 {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest) // 400 Bad Request
+		json.NewEncoder(w).Encode(db.ValidationErrorResponse{Errors: errs})
 		return
 	}
 

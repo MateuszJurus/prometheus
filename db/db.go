@@ -13,6 +13,10 @@ import (
 
 var db *sql.DB
 
+type ValidationErrorResponse struct {
+	Errors map[string]string `json:"errors"`
+}
+
 func InitDB(user, password, dbname, host string, port int, migrationsPath string) {
 	connStr := fmt.Sprintf("user=%s dbname=%s password=%s host=%s port=%d sslmode=disable", user, dbname, password, host, port)
 	var err error
