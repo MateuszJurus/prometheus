@@ -8,13 +8,13 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/mateuszjurus/prometheus/db"
+	"github.com/mateuszjurus/prometheus/pkg/store"
 	"golang.org/x/crypto/bcrypt"
 )
 
 func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
-	db.SetupValidator()
-	var newUser db.User
+	store.SetupValidator()
+	var newUser store.User
 	err := json.NewDecoder(r.Body).Decode(&newUser)
 
 	if err != nil {
@@ -23,11 +23,11 @@ func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	errs := db.ValidateUser(newUser)
+	errs := store.ValidateUser(newUser)
 	if len(errs) > 0 {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusBadRequest) // 400 Bad Request
-		json.NewEncoder(w).Encode(db.ValidationErrorResponse{Errors: errs})
+		json.NewEncoder(w).Encode(store.ValidationErrorResponse{Errors: errs})
 		return
 	}
 
@@ -41,7 +41,7 @@ func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 	newUser.Password = string(hashedPassword)
 
 	// Insert the new user into the database
-	err = db.CreateUser(newUser)
+	err = store.CreateUser(newUser)
 	if err != nil {
 		http.Error(w, "Error creating user", http.StatusInternalServerError)
 		log.Printf("Error creating user: %v", err)

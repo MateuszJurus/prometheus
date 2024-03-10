@@ -6,9 +6,9 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/mateuszjurus/prometheus/db"
-	"github.com/mateuszjurus/prometheus/internal/config"
-	"github.com/mateuszjurus/prometheus/internal/handlers"
+	"github.com/mateuszjurus/prometheus/config"
+	handlers "github.com/mateuszjurus/prometheus/pkg/api/handler"
+	db "github.com/mateuszjurus/prometheus/pkg/store"
 	"github.com/rs/cors"
 )
 

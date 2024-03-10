@@ -1,6 +1,4 @@
-// db/user_db.go
-
-package db
+package store
 
 import (
 	"fmt"
