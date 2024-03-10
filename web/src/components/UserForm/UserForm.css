@@ -1,0 +1,12 @@
+.user-form {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    margin-inline: auto;
+
+    input {
+        margin-bottom: 10px;
+    }
+}

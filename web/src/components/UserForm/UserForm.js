@@ -1,6 +1,7 @@
 // src/components/UserForm.js
 
 import React, { useState } from 'react';
+import './UserForm.css';
 
 const UserForm = () => {
   const [user, setUser] = useState({
@@ -42,7 +43,7 @@ const UserForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="user-form" onSubmit={handleSubmit}>
       <label>
         Name:
         <input
