@@ -1,0 +1,11 @@
+.navigation {
+    background-color: var(--bg-200);
+
+    .navigation__list {
+        margin: 0;
+        padding: 5px 10px;
+        display: flex;
+        flex-flow: row nowrap;
+        list-style-type: none;
+    }
+}

@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	connectDB(config.DBUser, config.DBPassword, config.DBName, config.DBHost, config.DBPort)
+	connectDB(config.DBUser, config.DBPassword, config.DBName, config.DBHost, config.DBPort, config.DBMigrationsPath)
 	initRouting()
 }
 
@@ -23,7 +23,6 @@ func initRouting() {
 
 	// Define the route for the homepage
 	router.HandleFunc("/", handlers.HomeHandler).Methods("GET")
-	router.HandleFunc("/name", handlers.NameHandler).Methods("POST")
 	router.HandleFunc("/create-user", handlers.CreateUserHandler).Methods("POST")
 
 	// Use CORS middleware
@@ -46,6 +45,7 @@ func initRouting() {
 	}
 }
 
-func connectDB(dbuser, dbpass, dbname, dbhost string, dbport int) {
-	db.InitDB(dbuser, dbpass, dbname, dbhost, dbport)
+func connectDB(dbuser, dbpass, dbname, dbhost string, dbport int, dbmigrationspath string) {
+	db.InitDB(dbuser, dbpass, dbname, dbhost, dbport, dbmigrationspath)
+	db.RunMigrations(dbmigrationspath)
 }
