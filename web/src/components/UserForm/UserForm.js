@@ -23,7 +23,7 @@ const UserForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/create-user', {
+      const response = await fetch('http://localhost:8080/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

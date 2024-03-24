@@ -8,26 +8,18 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/mateuszjurus/prometheus/pkg/domain"
 	"github.com/mateuszjurus/prometheus/pkg/store"
 	"golang.org/x/crypto/bcrypt"
 )
 
 func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
-	store.SetupValidator()
-	var newUser store.User
+	var newUser domain.User
 	err := json.NewDecoder(r.Body).Decode(&newUser)
 
 	if err != nil {
 		log.Fatal(err)
 		http.Error(w, "Invalid request body", http.StatusBadRequest)
-		return
-	}
-
-	errs := store.ValidateUser(newUser)
-	if len(errs) > 0 {
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusBadRequest) // 400 Bad Request
-		json.NewEncoder(w).Encode(store.ValidationErrorResponse{Errors: errs})
 		return
 	}
 
