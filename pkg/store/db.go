@@ -75,3 +75,8 @@ func RunMigrations(migrationsPath string) error {
 
 	return nil
 }
+
+// GetDB returns the database connection to use in different places
+func GetDB() *sql.DB {
+	return db
+}

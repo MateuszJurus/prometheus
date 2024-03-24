@@ -1,10 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './utils/AuthProvider.js';
 import Navigation from './components/Navigation/Navigation.js';
 import Home from './pages/Home/Home.js';
 import About from './pages/About/About.js';
 import FormPage from './pages/Form/Form.js';
 
+// Define routing
 const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/about', name: 'About', component: About },
@@ -14,8 +16,8 @@ const routes = [
 function App() {
   return (
     <Router>
-      <div>
-        <Navigation routes={routes} />
+      <AuthProvider>
+      <Navigation routes={routes} />
         <main className='main'>
         <Routes>
           {routes.map((route, index) => (
@@ -23,7 +25,7 @@ function App() {
           ))}
         </Routes>
         </main>
-      </div>
+      </AuthProvider>
     </Router>
   );
 }

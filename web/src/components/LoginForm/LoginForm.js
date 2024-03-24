@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import { useAuth } from '../../utils/AuthProvider';
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { login } = useAuth(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    onLogin(username, password);
+    await login(username, password);
   };
 
   return (
