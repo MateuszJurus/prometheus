@@ -19,7 +19,7 @@ func CreateUser(user domain.User) error {
 }
 
 func ListUsers() ([]domain.User, error) {
-	rows, err := db.Query("SELECT \"ID\", username, email FROM users")
+	rows, err := db.Query("SELECT \"ID\", username, email, role FROM users")
 	if err != nil {
 		log.Printf("Error fetching users from DB: %v", err)
 		return nil, err
@@ -32,7 +32,7 @@ func ListUsers() ([]domain.User, error) {
 
 	for rows.Next() {
 		var u domain.User
-		err := rows.Scan(&u.ID, &u.Username, &u.Email)
+		err := rows.Scan(&u.ID, &u.Username, &u.Email, &u.Role)
 		if err != nil {
 			fmt.Println("Error scanning for specified user info")
 		}

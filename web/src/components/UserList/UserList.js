@@ -33,11 +33,20 @@ const UserList = () => {
             <td>{user.ID}</td> 
             <td>{user.username}</td> 
             <td>{user.email}</td> 
+            <td>{user.role}</td> 
         </tr>
     ));
 
     return (
         <table>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Username</td>
+                    <td>Email</td>
+                    <td>Role</td>
+                </tr>
+            </thead>
             <tbody>
             { userList }
             </tbody>
