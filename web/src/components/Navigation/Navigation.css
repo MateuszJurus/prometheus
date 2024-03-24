@@ -1,5 +1,9 @@
 .navigation {
     background-color: var(--bg-200);
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
 
     .navigation__list {
         margin: 0;

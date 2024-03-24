@@ -5,7 +5,6 @@ import './UserForm.css';
 
 const UserForm = () => {
   const [user, setUser] = useState({
-    ID: 1,
     username: '',
     email: '',
     password: '',

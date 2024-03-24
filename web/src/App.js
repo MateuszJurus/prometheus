@@ -21,7 +21,6 @@ function App() {
           {routes.map((route, index) => (
             <Route key={index} path={route.path} element={<route.component />} />
           ))}
-          {/* Add more routes for additional pages */}
         </Routes>
         </main>
       </div>

@@ -3,6 +3,7 @@
 import React from 'react';
 import './Navigation.css';
 import NavigationItem from '../NavigationItem/NavigationItem';
+import LoginForm from '../LoginForm/LoginForm';
 
 const Navigation = ({ routes }) => {
   return (
@@ -12,6 +13,7 @@ const Navigation = ({ routes }) => {
           <NavigationItem key={index} name={route.name} url={route.path} />
         ))}
       </ul>
+      <LoginForm />
     </nav>
   );
 };

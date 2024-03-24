@@ -16,7 +16,7 @@ const UserList = () => {
                     console.log('Users list fetched successfuly!');
                     setUser(data)
                 } else {
-                    console.error('Failed to add user');
+                    console.error('Failed to fetch users');
                 }
             }
             catch (error) {
@@ -29,7 +29,6 @@ const UserList = () => {
     // Render user list
     const userList = users.map((user, index) => (
         <tr key={index}>
-            {/* Example: Assuming user object has `username` */}
             <td>{user.ID}</td> 
             <td>{user.username}</td> 
             <td>{user.email}</td> 
