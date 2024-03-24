@@ -1,7 +1,9 @@
+import UserList from "../../components/UserList/UserList";
+
 function About() {
     return (
         <div>
-            About
+            <UserList />
         </div>
     )
 }

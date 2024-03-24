@@ -44,3 +44,20 @@ func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 	fmt.Fprintf(w, "User created successfully")
 }
+
+func ListUsersHandler(w http.ResponseWriter, r *http.Request) {
+	users, err := store.ListUsers()
+	if err != nil {
+		http.Error(w, "Error listing users", http.StatusInternalServerError)
+		log.Printf("Error listing users: %v", err)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+
+	err = json.NewEncoder(w).Encode(users)
+	if err != nil {
+		http.Error(w, "Error encoding users to JSON", http.StatusInternalServerError)
+		log.Printf("Error encoding users to JSON: %v", err)
+	}
+}

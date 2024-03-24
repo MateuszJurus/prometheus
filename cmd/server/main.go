@@ -24,6 +24,7 @@ func initRouting() {
 	// Define the route for the homepage
 	router.HandleFunc("/", handlers.HomeHandler).Methods("GET")
 	router.HandleFunc("/user", handlers.CreateUserHandler).Methods("POST")
+	router.HandleFunc("/user/list", handlers.ListUsersHandler).Methods("GET")
 
 	// Use CORS middleware
 	corsHandler := cors.Default().Handler(router)
