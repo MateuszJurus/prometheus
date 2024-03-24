@@ -1,0 +1,18 @@
+table {
+    width: 100%; 
+    border-collapse: collapse; 
+    table-layout: fixed; 
+}
+
+tr {
+    border-bottom: 1px solid #ddd;
+}
+
+td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:hover {
+    background-color: var(--bg-200); 
+}

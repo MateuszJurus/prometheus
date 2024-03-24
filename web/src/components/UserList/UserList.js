@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './UserList.css';
 
 const UserList = () => {
 
@@ -29,13 +30,17 @@ const UserList = () => {
     const userList = users.map((user, index) => (
         <tr key={index}>
             {/* Example: Assuming user object has `username` */}
+            <td>{user.ID}</td> 
             <td>{user.username}</td> 
+            <td>{user.email}</td> 
         </tr>
     ));
 
     return (
         <table>
+            <tbody>
             { userList }
+            </tbody>
         </table>
     );
 }
