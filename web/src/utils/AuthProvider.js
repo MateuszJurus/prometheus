@@ -6,14 +6,20 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
-
-
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(!localStorage.getItem('pr-token'));
 
   useEffect(() => {
     console.log(isAuthenticated)
     },[isAuthenticated])
+
+useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        // Validate token. If invalid, call logout()
+        logout();
+    }
+    }, []);
 
   const login = async (username, password) => {
     try {
@@ -30,7 +36,7 @@ export const AuthProvider = ({ children }) => {
         }
     
         const { token } = await response.json();
-        localStorage.setItem('token', token); // Store the token for future requests
+        localStorage.setItem('pr-token', token); // Store the token for future requests
         setIsAuthenticated(true); // Update the authentication state
       } catch (error) {
         console.error(error);

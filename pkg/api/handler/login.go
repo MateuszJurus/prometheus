@@ -26,7 +26,6 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println(req.Username)
 	user, err := domain.GetUserByUserName(connection, req.Username)
 	if err != nil {
 		log.Printf("Error fetching user: %v", err)
